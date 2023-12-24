@@ -1,0 +1,88 @@
+<mvc:View controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+        <Button id="btn" press="onPress"/>
+         	<Table id="idProductsTable"
+		inset="false"
+		items="{
+			path: '/SEPMRA_I_PriceClassification'
+		}">	
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Price Id" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Price Classifiction" />
+			</Column>
+
+			
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle" press="onRowPress" type="Navigation">
+				<cells>
+					<ObjectIdentifier
+						title="{PriceClassification}"/>
+					<Text
+						text="{PriceClassification_Text}" />
+
+		 
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+
+
+             	<Table id="idBookTable"
+		inset="false"
+		items="{
+			path: 'BookModel>/BooksSrv'
+		}">	
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Book ID" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Book Name" />
+			</Column>
+<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Author ID" />
+			</Column>
+<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Stock" />
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle" press="onRowPress" type="Navigation">
+				<cells>
+					<ObjectIdentifier
+						title="{BookModel>ID}"/>
+					<Text
+						text="{BookModel>title}" />
+<Text
+						text="{BookModel>author_ID}" />
+<Text
+						text="{BookModel>stock}" />
+		
+		 
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+        </content>
+    </Page>
+</mvc:View>

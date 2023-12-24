@@ -1,0 +1,96 @@
+_schema-version: "3.1"
+ID: TestProject_SAPES5
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: TestProject_SAPES5-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: TestProject_SAPES5-destination
+  - name: TestProject_SAPES5-db
+  - name: TestProject_SAPES5-auth
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm
+- name: TestProject_SAPES5-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: TestProject_SAPES5-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: TestProject_SAPES5-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: TestProject_SAPES5-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - project1.zip
+      name: project1
+      target-path: resources/
+- name: project1
+  type: html5
+  path: app/project1
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: TestProject_SAPES5-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+    service: destination
+    service-plan: lite
+- name: TestProject_SAPES5-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: TestProject_SAPES5-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: TestProject_SAPES5-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: TestProject_SAPES5-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: TestProject_SAPES5-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npx cds build --production

@@ -1,0 +1,1005 @@
+{
+ "meta": {
+  "creator": "cds-dk 7.5.0"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "metadata": {
+   "kind": "service",
+   "@cds.external": true,
+   "@m.IsDefaultEntityContainer": "true",
+   "@sap.supported.formats": "atom json xlsx"
+  },
+  "metadata.Suppliers": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "elements": {
+    "Id": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Supplier",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "ContactEmail": {
+     "type": "cds.String",
+     "length": 255,
+     "@sap.unicode": "false",
+     "@sap.label": "Email",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "Name": {
+     "type": "cds.String",
+     "length": 80,
+     "@sap.unicode": "false",
+     "@sap.label": "Supplier Name",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "Phone": {
+     "type": "cds.String",
+     "length": 30,
+     "@sap.unicode": "false",
+     "@sap.label": "Phone",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "Email": {
+     "type": "cds.String",
+     "length": 255,
+     "@sap.unicode": "false",
+     "@sap.label": "Email",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "WebAddress": {
+     "type": "cds.LargeString",
+     "@sap.unicode": "false",
+     "@sap.label": "URI",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "FormattedAddress": {
+     "type": "cds.String",
+     "length": 129,
+     "@sap.unicode": "false",
+     "@sap.label": "Address",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "FormattedContactName": {
+     "type": "cds.String",
+     "length": 81,
+     "@sap.unicode": "false",
+     "@sap.label": "Full Name",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "ContactPhone1": {
+     "type": "cds.String",
+     "length": 30,
+     "@sap.unicode": "false",
+     "@sap.label": "Phone",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "ContactPhone2": {
+     "type": "cds.String",
+     "length": 30,
+     "@sap.unicode": "false",
+     "@sap.label": "Fax",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    }
+   }
+  },
+  "metadata.MainCategories": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "elements": {
+    "Id": {
+     "key": true,
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "Name": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "SubCategories": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "metadata.SubCategories",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "SubCategories",
+        "MainCategoryId"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "Id"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "metadata.SubCategories": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.searchable": "true",
+   "@sap.content.version": "1",
+   "elements": {
+    "Id": {
+     "key": true,
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Sub-Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "Name": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Sub-Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "MainCategoryId": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "MainCategoryName": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "MainCategory": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "metadata.MainCategories",
+     "on": [
+      {
+       "ref": [
+        "MainCategory",
+        "Id"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "MainCategoryId"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "metadata.Reviews": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.content.version": "1",
+   "elements": {
+    "Id": {
+     "key": true,
+     "type": "cds.UUID",
+     "@sap.unicode": "false",
+     "@sap.label": "Node Key",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "ChangedAt": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime",
+     "@sap.unicode": "false",
+     "@sap.label": "Reviewed",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "Comment": {
+     "type": "cds.LargeString",
+     "@sap.unicode": "false",
+     "@sap.label": "Rating Text"
+    },
+    "HelpfulCount": {
+     "type": "cds.Integer",
+     "@sap.unicode": "false",
+     "@sap.label": "Helpful",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "HelpfulForCurrentUser": {
+     "type": "cds.Boolean",
+     "@sap.unicode": "false",
+     "@sap.label": "Is Helpful",
+     "@sap.creatable": "false",
+     "notNull": true
+    },
+    "IsReviewOfCurrentUser": {
+     "type": "cds.Boolean",
+     "@sap.unicode": "false",
+     "@sap.label": "Reviewed by Me",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "ProductId": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Product",
+     "notNull": true
+    },
+    "Rating": {
+     "type": "cds.Integer",
+     "@odata.Type": "Edm.Byte",
+     "@sap.unicode": "false",
+     "@sap.label": "Rating",
+     "notNull": true
+    },
+    "UserDisplayName": {
+     "type": "cds.String",
+     "length": 81,
+     "@sap.unicode": "false",
+     "@sap.label": "Reviewer",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    }
+   }
+  },
+  "metadata.Products": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "@sap.service.version": "1",
+   "elements": {
+    "Id": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Product",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "AverageRating": {
+     "type": "cds.Decimal",
+     "precision": 4,
+     "scale": 2,
+     "@sap.unicode": "false",
+     "@sap.label": "Average Rating",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "Name": {
+     "type": "cds.String",
+     "length": 255,
+     "@sap.unicode": "false",
+     "@sap.label": "Name",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "Description": {
+     "type": "cds.String",
+     "length": 255,
+     "@sap.unicode": "false",
+     "@sap.label": "Description",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "StockQuantity": {
+     "type": "cds.Integer",
+     "@sap.unicode": "false",
+     "@sap.label": "Availability",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "CurrencyCode": {
+     "type": "cds.String",
+     "length": 5,
+     "@sap.unicode": "false",
+     "@sap.label": "Currency",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.semantics": "currency-code",
+     "notNull": true
+    },
+    "DimensionDepth": {
+     "type": "cds.Decimal",
+     "precision": 13,
+     "scale": 3,
+     "@sap.unicode": "false",
+     "@sap.unit": "QuantityUnit",
+     "@sap.label": "Depth",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "DimensionHeight": {
+     "type": "cds.Decimal",
+     "precision": 13,
+     "scale": 3,
+     "@sap.unicode": "false",
+     "@sap.unit": "QuantityUnit",
+     "@sap.label": "Height",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "DimensionUnit": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Dimension Unit",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "DimensionWidth": {
+     "type": "cds.Decimal",
+     "precision": 13,
+     "scale": 3,
+     "@sap.unicode": "false",
+     "@sap.unit": "QuantityUnit",
+     "@sap.label": "Width",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "HasReviewOfCurrentUser": {
+     "type": "cds.Boolean",
+     "@sap.unicode": "false",
+     "@sap.label": "Reviewed",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "ImageUrl": {
+     "type": "cds.String",
+     "length": 255,
+     "@sap.unicode": "false",
+     "@sap.label": "Image",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "IsFavoriteOfCurrentUser": {
+     "type": "cds.Boolean",
+     "@sap.unicode": "false",
+     "@sap.label": "Is Favorite",
+     "@sap.creatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "LastModified": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 7,
+     "@sap.unicode": "false",
+     "@sap.label": "Last Changed",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "MainCategoryId": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "MainCategoryName": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "MeasureUnit": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Base Unit",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "Price": {
+     "type": "cds.Decimal",
+     "precision": 15,
+     "scale": 2,
+     "@sap.unicode": "false",
+     "@sap.unit": "CurrencyCode",
+     "@sap.label": "Price",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "QuantityUnit": {
+     "type": "cds.String",
+     "length": 3,
+     "@sap.unicode": "false",
+     "@sap.label": "Base Unit",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.semantics": "unit-of-measure",
+     "notNull": true
+    },
+    "RatingCount": {
+     "type": "cds.Integer",
+     "@sap.unicode": "false",
+     "@sap.label": "Number of Reviews",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "SubCategoryId": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Sub-Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "SubCategoryName": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.unicode": "false",
+     "@sap.label": "Sub-Category",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "SupplierId": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Supplier",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "SupplierName": {
+     "type": "cds.String",
+     "length": 80,
+     "@sap.unicode": "false",
+     "@sap.label": "Supplier Name",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "WeightMeasure": {
+     "type": "cds.Decimal",
+     "precision": 13,
+     "scale": 3,
+     "@sap.unicode": "false",
+     "@sap.unit": "QuantityUnit",
+     "@sap.label": "Weight",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "WeightUnit": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Weight Unit",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "notNull": true
+    },
+    "ReviewAggregates": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "metadata.ReviewAggregates",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "ReviewAggregates",
+        "ProductId"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "Id"
+       ]
+      }
+     ]
+    },
+    "Reviews": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "metadata.Reviews",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "Reviews",
+        "ProductId"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "Id"
+       ]
+      }
+     ]
+    },
+    "SubCategory": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "metadata.SubCategories",
+     "on": [
+      {
+       "ref": [
+        "SubCategory",
+        "Id"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "SubCategoryId"
+       ]
+      }
+     ]
+    },
+    "Supplier": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "metadata.Suppliers",
+     "on": [
+      {
+       "ref": [
+        "Supplier",
+        "Id"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "SupplierId"
+       ]
+      }
+     ]
+    },
+    "Images": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "metadata.Images",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "Images",
+        "ProductId"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "Id"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "metadata.ReviewAggregates": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "elements": {
+    "ProductId": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Product ID",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "Rating": {
+     "key": true,
+     "type": "cds.Integer",
+     "@odata.Type": "Edm.Byte",
+     "@sap.unicode": "false",
+     "@sap.label": "Rating",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "RatingCount": {
+     "type": "cds.Integer",
+     "@sap.unicode": "false",
+     "@sap.label": "Number of Reviews",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    }
+   }
+  },
+  "metadata.ShoppingCartItems": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "elements": {
+    "Id": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Item",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "ShoppingCartId": {
+     "type": "cds.Integer",
+     "@sap.unicode": "false",
+     "@sap.label": "Shopping Cart",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "ProductId": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Product",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "Quantity": {
+     "type": "cds.Integer",
+     "@sap.unicode": "false",
+     "@sap.label": "Quantity",
+     "@sap.creatable": "false",
+     "notNull": true
+    },
+    "Unit": {
+     "type": "cds.String",
+     "length": 3,
+     "@sap.unicode": "false",
+     "@sap.label": "Base Unit",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.semantics": "unit-of-measure",
+     "notNull": true
+    },
+    "SubTotal": {
+     "type": "cds.Decimal",
+     "precision": 15,
+     "scale": 2,
+     "@sap.unicode": "false",
+     "@sap.unit": "CurrencyCode",
+     "@sap.label": "Net Amount",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "CurrencyCode": {
+     "type": "cds.String",
+     "length": 5,
+     "@sap.unicode": "false",
+     "@sap.label": "Currency",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.semantics": "currency-code",
+     "notNull": true
+    },
+    "Product": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "metadata.Products",
+     "on": [
+      {
+       "ref": [
+        "Product",
+        "Id"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "ProductId"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "metadata.ShoppingCarts": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "elements": {
+    "Id": {
+     "key": true,
+     "type": "cds.Integer",
+     "@sap.unicode": "false",
+     "@sap.label": "Shopping Cart",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "Total": {
+     "type": "cds.Decimal",
+     "precision": 15,
+     "scale": 2,
+     "@sap.unicode": "false",
+     "@sap.unit": "CurrencyCode",
+     "@sap.label": "Net Amount",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "CurrencyCode": {
+     "type": "cds.String",
+     "length": 5,
+     "@sap.unicode": "false",
+     "@sap.label": "Currency",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.semantics": "currency-code",
+     "notNull": true
+    },
+    "TotalQuantity": {
+     "type": "cds.Integer",
+     "@sap.unicode": "false",
+     "@sap.label": "Quantity",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "FormattedCustomerName": {
+     "type": "cds.String",
+     "length": 81,
+     "@sap.unicode": "false",
+     "@sap.label": "Ordered By",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "FormattedAddress": {
+     "type": "cds.String",
+     "length": 129,
+     "@sap.unicode": "false",
+     "@sap.label": "Delivery Address",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "ShoppingCartItems": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "metadata.ShoppingCartItems",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "ShoppingCartItems",
+        "ShoppingCartId"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "Id"
+       ]
+      }
+     ]
+    }
+   },
+   "actions": {
+    "BuyShoppingCart": {
+     "kind": "action",
+     "returns": {
+      "type": "metadata.ShoppingCarts"
+     }
+    }
+   }
+  },
+  "metadata.Images": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.label": "Images",
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "elements": {
+    "ProductId": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Product Id",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "Id": {
+     "key": true,
+     "type": "cds.String",
+     "length": 70,
+     "@sap.unicode": "false",
+     "@sap.label": "Id",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "MimeType": {
+     "type": "cds.String",
+     "length": 100,
+     "@sap.unicode": "false",
+     "@sap.label": "Dummy Field",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.sortable": "false",
+     "@sap.filterable": "false",
+     "notNull": true
+    },
+    "blob": {
+     "type": "cds.LargeBinary",
+     "@Core.MediaType": "application/octet-stream"
+    }
+   }
+  },
+  "metadata.AddProductToShoppingCart": {
+   "kind": "action",
+   "@cds.external": true,
+   "params": {
+    "ProductId": {
+     "type": "cds.LargeString"
+    }
+   },
+   "returns": {
+    "type": "metadata.ShoppingCartItems"
+   }
+  }
+ }
+}
